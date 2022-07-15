@@ -1,0 +1,7 @@
+div.commentsBtn {
+  cursor: pointer;
+}
+
+div.commentsBtn:hover {
+  text-shadow: 1px 1px 7px #343434;
+}

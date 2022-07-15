@@ -1,0 +1,9 @@
+div.feedback.container {
+  background-color: #343434;
+  color: #cdcdcd;
+}
+
+div.feedback div.label,
+div.date {
+  font-size: smaller;
+}
