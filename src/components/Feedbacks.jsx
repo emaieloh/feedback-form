@@ -4,7 +4,6 @@ import Feedback from "./Feedback";
 const Feedbacks = ({ feedbacks }) => {
   const filteredFeedbacks = feedbacks.map((feedback) => {
     const { _id, label, text, user, comments, createdAt } = feedback;
-    console.log(_id);
     return (
       <Feedback
         key={_id}
