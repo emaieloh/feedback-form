@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
+import MyContext from "../MyContext";
 import CommentsModal from "./CommentsModal";
 import Comment from "./Comment";
 import "./Comments.css";
 
-const Comments = ({ feedback_id, comments }) => {
+const Comments = ({ feedback_id, commentsLength }) => {
   const [commentsModal, setCommentsModal] = useState(false);
   const [commentContent, setCommentContent] = useState("");
+  const { comments } = useContext(MyContext);
 
   const showModal = () => setCommentsModal(true);
   const hideModal = () => setCommentsModal(false);
 
   const feedbackComments = comments.map((comment) => {
     const { _id, user, text, createdAt } = comment;
-    return <Comment key={_id} user={user} text={text} createdAt={createdAt} />;
+    return feedback_id === comment.feedback_id ? (
+      <Comment key={_id} user={user} text={text} createdAt={createdAt} />
+    ) : (
+      ""
+    );
   });
 
   return (
     <Container className="bg-light rounded-3">
       <Row>
         <Col className="fst-italic text-primary">
-          Comments: {comments.length}
+          Comments: {commentsLength}
         </Col>
         <Col
           className="fst-italic text-primary text-end commentsBtn"
@@ -36,7 +42,7 @@ const Comments = ({ feedback_id, comments }) => {
               </span>
             </Accordion.Header>
             <Accordion.Body>
-              {!comments.length ? "No comments" : feedbackComments}
+              {!commentsLength ? "No comments" : feedbackComments}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

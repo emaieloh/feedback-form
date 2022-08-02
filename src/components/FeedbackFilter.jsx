@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import MyContext from "../MyContext";
 import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import Feedbacks from "./Feedbacks";
 import "./FeedbackFilter.css";
 
-const FeedbackFilter = ({ feedbacks }) => {
+const FeedbackFilter = () => {
+  const { feedbacks } = useContext(MyContext);
+  const navigate = useNavigate();
+
   const featureRequest = feedbacks.filter((feedback) => {
     return feedback.label === "feature_request";
   });
+
   const bugReport = feedbacks.filter((feedback) => {
     return feedback.label === "bug_report";
   });
-  const navigate = useNavigate();
 
   return (
     <Container className="mt-5 pt-5 feedback-filter">
@@ -34,6 +38,7 @@ const FeedbackFilter = ({ feedbacks }) => {
           </Dropdown>
         </Col>
       </Row>
+
       <Routes>
         <Route path="/" element={<Feedbacks feedbacks={feedbacks} />} />
         <Route

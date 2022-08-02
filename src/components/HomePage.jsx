@@ -7,9 +7,7 @@ import FeedbackFilter from "./FeedbackFilter";
 import AddFeedback from "./AddFeedback";
 
 const HomePage = () => {
-  const { isLoggedIn, user, logOut, feedbacks, addFeedback } = useContext(
-    MyContext
-  );
+  const { isLoggedIn, user, logOut, addFeedback } = useContext(MyContext);
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace={true} />;
@@ -19,7 +17,7 @@ const HomePage = () => {
     <Container>
       <NavigationBar user={user} logOut={logOut} />
       <Routes>
-        <Route path="/*" element={<FeedbackFilter feedbacks={feedbacks} />} />
+        <Route path="/*" element={<FeedbackFilter />} />
         <Route
           path="/make-a-feedback"
           element={<AddFeedback user={user} addFeedback={addFeedback} />}

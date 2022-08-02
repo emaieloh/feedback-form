@@ -17,7 +17,7 @@ const Feedback = ({ id, label, text, user, comments, createdAt }) => {
       </Row>
       <div className="fs-4 py-1">{text}</div>
       <div className="label text-end fst-italic my-2">{label}</div>
-      <Comments feedback_id={id} comments={comments} />
+      <Comments feedback_id={id} commentsLength={comments} />
     </Container>
   );
 };
